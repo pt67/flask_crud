@@ -1,0 +1,189 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block styles %}
+{{ super() }}
+
+<style>
+  body { background: #f8f9fa !important; }
+   form input[type="number"], form input[type="text"], form input[type="date"]{
+   padding: 20px !important;
+  }
+  
+  form select{
+  height: 70px !important;
+  }
+  
+  input[type="submit"]{
+  padding: 15px 60px;
+  }
+
+</style>
+{% endblock %}
+
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+</head>
+
+{% block title %}
+	{% if choice == 'delete' %}
+		Delete a Entry
+	{% elif choice == 'edit' %}
+		Edit a Entry
+	{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-lg-10 mx-lg-auto">
+
+      <h1 class="pt-5 pb-2">
+		{% if choice == 'delete' %}
+	  		Delete a Entry
+	  	{% elif choice == 'edit' %}
+	  		Edit a Entry
+	  	{% endif %}
+	  </h1>
+	  <!-- ----- THIS TEMPLATE HAS TWO FORMS ----- -->
+	  <!-- but only one will be visible, depending on how the template
+  		   was opened -->
+
+	  <!-- ----- start delete Entry content ----- -->
+
+	  {% if choice == 'delete' %}
+
+	      <p class="lead alert alert-danger">Are you sure you want to delete this Entry?</p>
+
+		  <!-- links -->
+		  <p class="ml-4">No. <a href="{{ url_for('index') }}">Return to the index.</a></p>
+
+
+		<!-- table showing the selected Entry -->
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Country</th>
+				<th>Updated</th>
+			</tr>
+
+			<!-- just one entry here -->
+			<tr>
+				<td>{{ entry.tst1 }}</td>
+				<td>{{ entry.tst2 }}</td>
+				<td>{{ entry.tst3 }}</td>
+				<td>{{ entry.tst4 }}</td>
+			</tr>
+
+		</table>
+
+
+		<!-- start form for deleting record - not quickform but still WTForms -->
+  		<form action="{{ url_for('delete_result') }}" method="POST" id="delete">
+			{{ form2.csrf_token }}
+			{{ form2.id_field(value=entry.id) }}
+			{{ form2.purpose(value='delete') }}
+			{{ form2.submit(class="btn btn-danger space-below-btn") }}
+		</form>
+		<!-- end form -->
+
+
+		<!-- ----- end delete entry content ----- -->
+		{% else %}
+
+		<!-- ----- start edit entry content ----- -->
+
+		<p class="lead alert alert-success">Edit the selected entry below.</p>
+
+		<!-- links -->
+		<p><a href="{{ url_for('index') }}">Return to the index.</a></p>
+
+
+		<!-- show flash - based on WTForms validators
+			 see https://pythonprogramming.net/flash-flask-tutorial/
+			 get_flashed_messages() exists here because of flash()
+			 in the route function
+			 -->
+			 {% with errors = get_flashed_messages() %}
+				 {% if errors %}
+					 {% for err in errors %}
+					 <div class="alert alert-danger alert-dismissible" role="alert">
+						 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						 {{ err }}
+					 </div>
+					 {% endfor %}
+				 {% endif %}
+			 {% endwith %}
+		<!-- end of flash -->
+
+		<!-- start form for editing record
+			 correct use of WTF Bootstrap styles -->
+		<form method="post" action="{{ url_for('edit_result') }}" id="update">
+			{{ form1.csrf_token }}
+			{{ form1.id_field(value=entry.id) }}
+			{{ wtf.form_field(form1.tst1, value=entry.tst1) }}
+			{{ wtf.form_field(form1.tst2, value=entry.tst2) }}
+			{{ wtf.form_field(form1.tst3, value=entry.tst3) }}
+			{{ wtf.form_field(form1.tst4, value=entry.tst4) }}
+			{{ wtf.form_field(form1.tst5, value=entry.tst5) }}
+			{{ wtf.form_field(form1.tst6, value=entry.tst6) }}
+			{{ wtf.form_field(form1.tst7, value=entry.tst7) }}
+			{{ wtf.form_field(form1.tst8, value=entry.tst8) }}
+			{{ wtf.form_field(form1.tst9, value=entry.tst9) }}
+			{{ wtf.form_field(form1.tst10, value=entry.tst10) }}
+			{{ wtf.form_field(form1.tst11, value=entry.tst11) }}
+			{{ wtf.form_field(form1.tst12, value=entry.tst12) }}
+			{{ wtf.form_field(form1.tst13, value=entry.tst13) }}
+			{{ wtf.form_field(form1.tst14, value=entry.tst14) }}
+			{{ wtf.form_field(form1.tst15, value=entry.tst15) }}
+			{{ wtf.form_field(form1.tst16, value=entry.tst16) }}
+			{{ wtf.form_field(form1.tst17, value=entry.tst17) }}
+			{{ wtf.form_field(form1.tst18, value=entry.tst18) }}
+			{{ wtf.form_field(form1.tst19, value=entry.tst19) }}
+			{{ wtf.form_field(form1.tst20, value=entry.tst20) }}
+			{{ wtf.form_field(form1.tst21, value=entry.tst21) }}
+			{{ wtf.form_field(form1.tst22, value=entry.tst22) }}
+			{{ wtf.form_field(form1.tst23, value=entry.tst23) }}
+			{{ wtf.form_field(form1.tst24, value=entry.tst24) }}
+			{{ wtf.form_field(form1.tst25, value=entry.tst25) }}
+			{{ wtf.form_field(form1.tst26, value=entry.tst26) }}
+			{{ wtf.form_field(form1.tst27, value=entry.tst27) }}
+			{{ wtf.form_field(form1.tst28, value=entry.tst28) }}
+			{{ wtf.form_field(form1.tst29, value=entry.tst29) }}
+			{{ wtf.form_field(form1.tst30, value=entry.tst30) }}
+			{{ wtf.form_field(form1.tst31, value=entry.tst31) }}
+			
+			
+			
+			{{ wtf.form_field(form1.submit, button_map={'submit':'success'}) }}
+		</form>
+
+
+		{% endif %}
+
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+<script>
+  $( function() {
+    var availableTags = [
+        {% for country in countries %}
+            "{{country}}",
+        {% endfor %}
+    ];
+    $("#country").autocomplete({
+      source: availableTags
+    });
+  } );
+</script>

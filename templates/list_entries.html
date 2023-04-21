@@ -1,0 +1,317 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+<style>
+  body { background: #f8f9fa !important; }
+  ul { display: flex; }
+		
+  input[type="submit"]{
+  padding: 15px 60px;
+  }
+
+
+ table tbody tr td:first-child{
+    background-color:#28a745 !important;
+    color:white;
+}
+
+table tbody tr td:nth-child(2){
+    background-color:#28a745 !important;
+    color:white;
+}
+
+.page-link{
+	color: #28a745 !important;
+}
+
+.active .page-link{
+	background: #28a745 !important;
+    color:white !important;
+	border:1px solid #28a745;
+}
+
+.disabled .page-link{
+	background: transparent !important;
+	color: #333 !important;
+}
+  
+</style>
+
+{% endblock %}
+
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row pb-5">
+		<div class="col-lg-10 mx-lg-auto">
+	
+		  <h1 class="pt-5 pb-2">Flask Form Boilerplate</h1>
+	
+<form method="POST" id="form2" action="{{ url_for('edit_or_delete') }}">	
+  <div style="overflow-x:scroll;">
+	<table id="data" class="table table-striped">
+    <thead>
+      <tr class="bg-success text-white">
+		<th></th>
+        <th>tst1</th>
+        <th>tst2</th>
+        <th>tst3</th>
+        <th>tst4</th>
+        <th>tst5</th>
+		<th>tst6</th>
+		<th>tst7</th>
+		<th>tst8</th>
+		<th>tst9</th>
+		<th>tst10</th>
+		<th>tst11</th>
+		<th>tst12</th>
+		<th>tst13</th>
+		<th>tst14</th>
+		<th>tst15</th>
+		<th>tst16</th>
+		<th>tst17</th>
+		<th>tst18</th>
+		<th>tst19</th>
+		<th>tst20</th>
+		<th>tst21</th>
+		<th>tst22</th>
+		<th>tst23</th>
+		<th>tst24</th>
+		<th>tst25</th>
+		<th>tst26</th>
+		<th>tst27</th>
+		<th>tst28</th>
+		<th>tst29</th>
+		<th>tst30</th>
+		<th>tst31</th>
+		
+      </tr>
+    </thead>
+    <tbody id="tabody">
+		<!-- <input type="radio" name="id" value="1" required> -->
+    </tbody>
+  </table>
+</div>
+
+  <div class="form-group lead alert alert-success pb-4">
+	<p>What do you want to do with the selected record?</p>
+
+	<div class="form-check form-check-inline">
+	<label class="form-check-label"><input class="form-check-input" type="radio" name="choice" value="delete" required> Delete it</label>
+	</div>
+	<div class="form-check form-check-inline">
+	<label class="form-check-label"><input class="form-check-input" type="radio" name="choice" value="edit" required> Edit it</label>
+	</div>
+  </div><!-- end form-group -->
+
+  <div class="form-group">
+	  <input class="btn btn-success" type="submit" value="Submit Choice">
+  </div>
+
+  <p><a href="{{ url_for('index') }}"><button class="btn btn-info py-3 px-5" type="button">Add new Entry</button></a></p>
+
+<a class="btn btn-warning text-white py-3 px-5" id="savetable">Make table to Image</a>
+</form>
+
+</div>
+</div>
+
+
+
+  </div>
+
+
+
+
+
+
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        ajax: '/filter_data',
+		rowId: 'id',	
+        columns: [		  	
+          {data: 'tst1'},
+          {data: 'tst2', searchable: false},
+          {data: 'tst3', orderable: false, searchable: false},
+          {data: 'tst4', orderable: false, searchable: false},
+          {data: 'tst5'},
+		  {data: 'tst6'},
+		  {data: 'tst7'},
+		  {data: 'tst8'},
+		  {data: 'tst9'},
+		  {data: 'tst10'},
+		  {data: 'tst11'},
+		  {data: 'tst12'},
+		  {data: 'tst13'},
+		  {data: 'tst14'},
+		  {data: 'tst15'},
+		  {data: 'tst16'},
+		  {data: 'tst17'},
+		  {data: 'tst18'},
+		  {data: 'tst19'},
+		  {data: 'tst20'},
+		  {data: 'tst21'},
+		  {data: 'tst22'},
+		  {data: 'tst23'},
+		  {data: 'tst24'},
+		  {data: 'tst25'},
+		  {data: 'tst26'},
+		  {data: 'tst27'},
+		  {data: 'tst28'},
+		  {data: 'tst29'},
+		  {data: 'tst30'},
+		  {data: 'tst31'},
+		  
+
+        ],
+      });
+    });
+  </script>
+{% endblock %}
+
+
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+{% block javascript %}
+
+<script>
+ {% include "html2canvas.js" %}
+</script>
+
+{% endblock %}
+
+<script>
+
+    setTimeout(function(){
+	const getrow = document.querySelectorAll('#data #tabody tr');
+
+	getrow.forEach((e)=>{
+		var td = document.createElement('td');
+	    var el = document.createElement('input');
+		el.setAttribute('type', 'radio');
+		el.setAttribute('value', e.id);
+		el.setAttribute('name', 'id');
+		el.required = true;
+		td.appendChild(el);
+		e.insertBefore(td, e.firstChild); 
+   
+	});
+    
+	document.querySelector('.dataTables_length').classList.add('py-4');
+	document.querySelectorAll('.col-sm-12')[1].classList.add('text-right');
+
+
+
+	$(function() { 
+    $("#savetable").click(function() { 
+		var data = document.querySelector('#data');
+        
+		html2canvas(document.querySelector("#data")).then(canvas => {
+        var c= document.body.appendChild(canvas);
+		document.body.insertBefore(c, document.body.firstChild);
+		scrollTo(0, 0);
+   });
+
+    });
+});
+
+
+//form input search----
+	document.querySelector("input[type=search]").oninput = ()=>{
+
+	document.querySelectorAll('#data #tabody tr').forEach((e)=>{
+	    var td = document.createElement('td');
+	    var el = document.createElement('input');
+		el.setAttribute('type', 'radio');
+		el.setAttribute('value', e.id);
+		el.setAttribute('name', 'id');
+		el.required = true;
+		td.appendChild(el);
+       if(e.children.length !== 32){
+		e.insertBefore(td, e.firstChild); 
+	   }
+
+		
+   
+	});
+	
+}
+
+//pagination 
+
+document.querySelectorAll('#data_paginate .pagination li').forEach((e)=>{
+   e.onclick =()=>{
+  
+	document.querySelectorAll('#data #tabody tr').forEach((e)=>{
+	    var td = document.createElement('td');
+	    var el = document.createElement('input');
+		el.setAttribute('type', 'radio');
+		el.setAttribute('value', e.id);
+		el.setAttribute('name', 'id');
+		el.required = true;
+		td.appendChild(el);
+       if(e.children.length !== 32){
+		e.insertBefore(td, e.firstChild); 
+	   }
+
+		
+   
+	});
+
+
+   }
+
+});
+
+
+//counter 
+
+document.querySelector('#data_length select').onchange = ()=>{
+	document.querySelectorAll('#data #tabody tr').forEach((e)=>{
+	    var td = document.createElement('td');
+	    var el = document.createElement('input');
+		el.setAttribute('type', 'radio');
+		el.setAttribute('value', e.id);
+		el.setAttribute('name', 'id');
+		el.required = true;
+		td.appendChild(el);
+       if(e.children.length !== 32){
+		e.insertBefore(td, e.firstChild); 
+	   }
+
+		
+   
+	});
+}
+
+
+
+
+}, 1000);
+
+
+
+
+
+
+
+
+
+
+	
+</script>
+
+
+
+
+{% endblock %}

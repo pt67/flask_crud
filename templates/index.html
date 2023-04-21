@@ -1,0 +1,288 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<style>
+  body {
+    background: #f8f9fa !important;
+  }
+  
+  form input[type="number"], form input[type="text"], form input[type="date"]{
+   padding: 20px !important;
+  }
+  
+  form select{
+  height: 70px !important;
+  }
+  
+  input[type="submit"]{
+  padding: 15px 60px;
+  }
+  
+</style>
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pt-5 pb-2">Sample Flask APP</h1>
+
+      {% if message %}
+      <p><a href="{{ url_for('index') }}"><button class="btn btn-info" type="button">Back to main page</button></a></p>
+
+      <p class="lead"><strong>{{ message }}</strong></p>
+     <div id="isImage">
+     <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Trade Profile</h3>
+      <div class="d-flex">
+          <div class="bg-dark text-white">
+           <div class="border-bottom p-3">tst1</div>
+            <div class="border-bottom p-3">tst1</div>
+            <div class="border-bottom p-3">tst2</div>
+            <div class="border-bottom p-3">tst3</div>
+            <div class="border-bottom p-3">tst4</div>
+            <div class="border-bottom p-3">tst5</div>
+            <div class="border-bottom p-3">tst6</div>
+            <div class="border-bottom p-3">tst7</div>
+            <div class="border-bottom p-3">tst8</div>
+          </div>
+           <div class="w-100">         
+              <div class="border-bottom p-3">{{ entity.tst1 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst2 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst3 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst4 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst5 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst6 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst7 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst8 }}</div>
+            </div>   
+      </div>
+      </div>
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Pref data</h3>
+      <div class="d-flex">
+  
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst8</div>
+            <div class="border-bottom p-3">tst10</div>
+            <div class="border-bottom p-3">tst11</div>
+            <div class="border-bottom p-3">tst12</div>
+            <div class="border-bottom p-3">tst13</div>
+          </div>
+        <div class="w-100">
+             <div class="border-bottom p-3">{{ entity.tst9 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst10 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst11 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst12 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst13 }}</div>
+            </div>
+       
+      </div>
+      </div>
+      
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Targets</h3>
+      <div class="d-flex">
+       
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst14</div>
+            <div class="border-bottom p-3">tst15</div>
+            <div class="border-bottom p-3">tst16</div>
+            <div class="border-bottom p-3">tst17</div>           
+          </div>
+        
+       
+        <div class="w-100">
+              <div class="border-bottom p-3">{{ entity.tst14 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst15 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst16 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst17 }}</div>
+         </div>
+        
+      </div>
+      </div>
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Rationale </h3>
+      <div class="d-flex" id="rationale">
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst18</div>
+            <div class="border-bottom p-3">tst19</div>
+            <div class="border-bottom p-3">tst20</div>
+            <div class="border-bottom p-3"> tst21</div>
+            <div class="border-bottom p-3">tst22</div>
+            <div class="border-bottom p-3">tst23</div>
+          </div>
+        <div class="w-100">
+              <div class="border-bottom p-3">{{ entity.tst18 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst19 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst20 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst21 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst22 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst23 }}</div>
+            </div>
+      </div>
+      </div>
+      
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Sizing </h3>
+      <div class="d-flex">
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst24</div>
+            <div class="border-bottom p-3">tst25</div>
+            <div class="border-bottom p-3">tst26</div>
+            <div class="border-bottom p-3">tst27</div>
+            
+          </div>
+        <div class="w-100">
+              <div class="border-bottom p-3">{{ entity.tst24 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst25 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst26 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst27 }}</div>
+              
+            </div>
+      </div>
+      </div>
+      
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Esg </h3>
+      <div class="d-flex">
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst28</div>
+            <div class="border-bottom p-3">tst29</div>
+          </div>
+          <div class="w-100">
+              <div class="border-bottom p-3">{{ entity.tst28 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst29 }}</div>
+            </div>
+        </div>
+        </div>
+      
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Comments </h3>
+      <div class="d-flex">
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3"> tst30</div>           
+          </div>
+        <div class="w-100">
+             <div class="border-bottom p-3">{{ entity.tst30 }}</div>
+           </div>
+       </div>
+       </div>
+      
+      <div id="isImage">
+      <h3 class="bg-dark p-3 text-white mb-0 border-bottom">Close Date </h3>
+      <div class="d-flex">
+          <div class="bg-dark text-white">
+            <div class="border-bottom p-3">tst31</div>
+            <div class="border-bottom p-3">tst32</div>
+          </div>
+          <div class="w-100">
+              <div class="border-bottom p-3">{{ entity.tst31 }}</div>
+              <div class="border-bottom p-3">{{ entity.tst32 }}</div>
+            </div>
+      </div>
+      </div>
+      
+      
+      
+      {% else %}
+
+
+      <p class="lead alert alert-primary">Add a new entry.</p>
+
+
+      {% with errors = get_flashed_messages() %}
+      {% if errors %}
+      {% for err in errors %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+        {{ err }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+    {{ wtf.quick_form(form1) }}
+
+      {% endif %}
+      
+       <div class="py-3 mb-5 d-flex">
+        <a href="{{ url_for('list_entries') }}">
+        <button class="btn btn-info px-5 py-3" type="button">Entries List</button>
+        </a>
+       
+       </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+ {% include "html2canvas.js" %}
+</script>
+
+<script>
+
+ var tr_image = document.querySelectorAll('#isImage');
+ tr_image.forEach((e)=>{
+  html2canvas(e).then(canvas => {
+    var c= document.body.appendChild(canvas);
+    e.parentNode.replaceChild(c, e);
+
+   });
+
+ }); 
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('tst15').setAttribute('type', 'number');
+document.getElementById('tst5').setAttribute('type', 'date');
+document.getElementById('tst5').setAttribute('value', '2022-01-02');
+document.getElementById('tst17').setAttribute('type', 'number');
+document.getElementById('tst24').setAttribute('type', 'number');
+document.getElementById('tst25').setAttribute('type', 'number');
+document.getElementById('tst26').setAttribute('type', 'number');
+document.getElementById('tst27').setAttribute('type', 'number');
+document.getElementById('tst31').setAttribute('type', 'date');
+
+
+
+
+
+
+
+</script>
+{% block javascript %}
+
+<script>
+ {% include "script.js" %}
+</script>
+
+{% endblock %}
+
+<script>
+
+
+
+
+</script>
+
+
+{% endblock %}
